@@ -13,20 +13,17 @@ export class FiledropDirective {
   @HostListener('drop', ['$event'])
   onDrop(event) {
     event.preventDefault();
-    event.stopPropagation();
     this.droppedFiles.emit(event.dataTransfer.files);
     this.dropAreaHover.emit(false);
   }
   @HostListener('dragover', ['$event'])
   onDropAreaHover(event) {
     event.preventDefault();
-    event.stopPropagation();
     this.dropAreaHover.emit(true);
   }
   @HostListener('dragleave', ['$event'])
   onDropAreaLeave(event) {
     event.preventDefault();
-    event.stopPropagation();
     this.dropAreaHover.emit(false);
   }
 
