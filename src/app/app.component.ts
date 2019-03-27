@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  files = [];
+  dropAreaHover = false;
+
+  uploadFiles(files) {
+    this.files = files;
+    console.log(files);
+  }
+
+  dropAreaHovering(event) {
+    this.dropAreaHover = event;
+    console.log(event);
+  }
 }
