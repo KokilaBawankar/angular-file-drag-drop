@@ -22,6 +22,7 @@
       </div>
 
 
+
       <div style="width: 500px;height: 300px;">
         <h3 style="text-align: center">ngx-file-drop</h3>
         <h5 style="text-align: center;font-size: 10px">Relies on HTML 5 File API thus IE and Safari are not
@@ -33,6 +34,18 @@
                    (onFileOver)="dropAreaHovering($event)"
                    (onFileLeave)="dropAreaHovering($event)"
                    [showBrowseBtn]="true"></file-drop>
+        <div class="list-group" style="margin-left: 10px;margin-top: 10px" *ngIf="files.length != 0 ">
+          <div *ngFor="let file of files">{{file.relativePath}}</div>
+        </div>
+      </div>
+
+
+      <div style="width: 500px;height: 300px;">
+        <h3 style="text-align: center">angular-file-uploader</h3>
+        <h5 style="text-align: center;font-size: 10px">Angular file uploader is an Angular 2/4/5/6 file uploader module with Real-Time Progress Bar</h5>
+        <!--URL : https://www.npmjs.com/package/angular-file-uploader-->
+
+        <angular-file-uploader [config]="config"></angular-file-uploader>
         <div class="list-group" style="margin-left: 10px;margin-top: 10px" *ngIf="files.length != 0 ">
           <div *ngFor="let file of files">{{file.relativePath}}</div>
         </div>
