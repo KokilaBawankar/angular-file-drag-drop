@@ -8,7 +8,7 @@
              (droppedFiles)="uploadFiles($event)"
              (dropAreaHover)="dropAreaHovering($event)"
              [class.drop-section-hover]="dropAreaHover">
-          <h5 class="text-info" >Drop files here..</h5>
+          <h5 class="text-info file-drop-box-text" >Drop files here..</h5>
           <input type="file"
                  class="btn btn-info file-input-button"
                  (change)="uploadFiles($event.target.files)" multiple>
