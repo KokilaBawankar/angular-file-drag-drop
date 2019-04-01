@@ -27,7 +27,7 @@ Steps : https://angular.io/guide/creating-libraries#publishing-your-library
    - npm login
         This command will asks you username, password and email you entered when opnening account on npmjs.org.
    - npm init
-        This command will ask you name, version, description, keywords, license, author etc.
+        This command will ask you name, version, description, keywords, license, author, gitub repo url etc.
    - npm publish
    - Now import using command : npm i <library-name> in which project you want to use and add import statement in app.module
 
