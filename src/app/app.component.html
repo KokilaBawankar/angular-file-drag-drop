@@ -2,21 +2,18 @@
   <div class="row">
     <div class="col-md-12">
 
-
-      <div style="width: 500px;height: 300px;">
-        <h3 style="text-align: center">Custom</h3>
-        <div appFiledrop
+      <div class="file-drop">
+        <div class="file-drop-box"
+             appFiledrop
              (droppedFiles)="uploadFiles($event)"
              (dropAreaHover)="dropAreaHovering($event)"
-             [class.drop-section-hover]="dropAreaHover"
-          style="width: 100%; height: 100px;border: 2px dotted #17a2b8; border-radius: 30px;justify-content: center;align-items: center;display: flex">
-          <h5 class="text-info" style="font-size: 15px; font-weight: 400">Drop files here..</h5>
+             [class.drop-section-hover]="dropAreaHover">
+          <h5 class="text-info" >Drop files here..</h5>
           <input type="file"
-                 style="width: 130px"
-                 class="btn btn-info"
+                 class="btn btn-info file-input-button"
                  (change)="uploadFiles($event.target.files)" multiple>
         </div>
-        <div class="list-group" style="margin-left: 10px;margin-top: 10px" *ngIf="files.length != 0 ">
+        <div class="list-group selected-file-list" *ngIf="files.length != 0 ">
           <div *ngFor="let file of files">{{file.name}}</div>
         </div>
       </div>
