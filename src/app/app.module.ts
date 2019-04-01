@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FiledropDirective } from './filedrop.directive';
-import {FileDropModule} from 'ngx-file-drop';
-import {AngularFileUploaderModule} from 'angular-file-uploader';
+// import {FileDropModule} from 'ngx-file-drop';
+// import {AngularFileUploaderModule} from 'angular-file-uploader';
 
 @NgModule({
   declarations: [
@@ -13,8 +13,8 @@ import {AngularFileUploaderModule} from 'angular-file-uploader';
   ],
   imports: [
     BrowserModule,
-    FileDropModule,
-    AngularFileUploaderModule
+    // FileDropModule,
+    // AngularFileUploaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

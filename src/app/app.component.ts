@@ -9,9 +9,10 @@ export class AppComponent {
 
   files = [];
   dropAreaHover = false;
-  config;
+  // config;
 
   constructor() {
+/*
     this.config = {
       multiple: true,
       theme: 'dragNDrop',
@@ -33,6 +34,7 @@ export class AppComponent {
         afterUploadMsg_error: 'Upload Failed !'
       }
     };
+*/
   }
 
 

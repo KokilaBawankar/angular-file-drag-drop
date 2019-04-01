@@ -3,12 +3,12 @@
     <div class="col-md-12">
 
 
-      <div style="width: 500px;height: 300px;"
-           appFiledrop
-           (droppedFiles)="uploadFiles($event)"
-           (dropAreaHover)="dropAreaHovering($event)">
+      <div style="width: 500px;height: 300px;">
         <h3 style="text-align: center">Custom</h3>
-        <div [class.drop-section-hover]="dropAreaHover"
+        <div appFiledrop
+             (droppedFiles)="uploadFiles($event)"
+             (dropAreaHover)="dropAreaHovering($event)"
+             [class.drop-section-hover]="dropAreaHover"
           style="width: 100%; height: 100px;border: 2px dotted #17a2b8; border-radius: 30px;justify-content: center;align-items: center;display: flex">
           <h5 class="text-info" style="font-size: 15px; font-weight: 400">Drop files here..</h5>
           <input type="file"
@@ -22,12 +22,11 @@
       </div>
 
 
-
-      <div style="width: 500px;height: 300px;">
+      <!--<div style="width: 500px;height: 300px;">
         <h3 style="text-align: center">ngx-file-drop</h3>
         <h5 style="text-align: center;font-size: 10px">Relies on HTML 5 File API thus IE and Safari are not
           supported</h5>
-        <!--URL : https://www.npmjs.com/package/ngx-file-drop-->
+        &lt;!&ndash;URL : https://www.npmjs.com/package/ngx-file-drop&ndash;&gt;
 
         <file-drop dropZoneLabel="Drop files here.."
                    (onFileDrop)="uploadFiles($event.files)"
@@ -43,14 +42,14 @@
       <div style="width: 500px;height: 300px;">
         <h3 style="text-align: center">angular-file-uploader</h3>
         <h5 style="text-align: center;font-size: 10px">Angular file uploader is an Angular 2/4/5/6 file uploader module with Real-Time Progress Bar</h5>
-        <!--URL : https://www.npmjs.com/package/angular-file-uploader-->
+        &lt;!&ndash;URL : https://www.npmjs.com/package/angular-file-uploader&ndash;&gt;
 
         <angular-file-uploader [config]="config"></angular-file-uploader>
         <div class="list-group" style="margin-left: 10px;margin-top: 10px" *ngIf="files.length != 0 ">
           <div *ngFor="let file of files">{{file.relativePath}}</div>
         </div>
       </div>
-
+-->
 
     </div>
   </div>
