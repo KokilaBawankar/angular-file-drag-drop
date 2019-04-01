@@ -38,12 +38,12 @@ export class AppComponent {
   }
 
 
-  uploadFiles(files) {
+  onFileDropOrSelect(files) {
     this.files = files;
     console.log(files);
   }
 
-  dropAreaHovering(event) {
+  onDropAreaHover(event) {
     this.dropAreaHover = event;
     console.log(event);
   }

@@ -2,23 +2,8 @@
   <div class="row">
     <div class="col-md-12">
 
-      <div class="file-drop">
-        <div class="file-drop-box"
-             appFiledrop
-             (droppedFiles)="uploadFiles($event)"
-             (dropAreaHover)="dropAreaHovering($event)"
-             [class.drop-section-hover]="dropAreaHover">
-          <h5 class="text-info file-drop-box-text" >Drop files here..</h5>
-          <input type="file"
-                 class="btn btn-info file-input-button"
-                 (change)="uploadFiles($event.target.files)" multiple>
-        </div>
-        <div class="list-group selected-file-list" *ngIf="files.length != 0 ">
-          <div *ngFor="let file of files">{{file.name}}</div>
-        </div>
-      </div>
-
-
+      <lib-file-drag-drop (select)="onFileDropOrSelect($event)"
+                          (dropAreaHovering)="onDropAreaHover($event)"></lib-file-drag-drop>
       <!--<div style="width: 500px;height: 300px;">
         <h3 style="text-align: center">ngx-file-drop</h3>
         <h5 style="text-align: center;font-size: 10px">Relies on HTML 5 File API thus IE and Safari are not

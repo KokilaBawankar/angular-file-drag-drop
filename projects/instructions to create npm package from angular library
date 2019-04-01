@@ -1,0 +1,47 @@
+Steps : https://angular.io/guide/creating-libraries#publishing-your-library
+
+1. Create angular project using command : ng new <project-name> - This is will create workspace for angular project.
+
+2. Create angular library using command : ng generate library <library-name> - This will create project folder in the angular
+   project's root folder and <library-name> folder inside project folder.
+
+   - /project/<library-name> folder will contain our code for library that we are going to publish as npm package.
+   - The public API for your library is maintained in the public-api.ts file in your library folder. Anything exported
+   from this file is made public when your library is imported into an application.
+   - Specify dependencies of your library as peerDependency or devDependency in /project/<library-name>package.json. Do
+   no specify any dependency as dependency.
+   - Creating library will also makes changes to some existing files angular.json tsconfig.json. package.json
+
+3. Add code of your library.
+
+4. Take build for library using command : ng build <library-name>
+
+5. We can use angular library in two ways. One publish as npm package and import or use locally.
+
+6. Publish npm package. In order to publish your library as npm package you need to account opened at npmjs.org, if you
+   do not have open first. And use the following commands to publish.
+
+   - cd <project-name>/dist/<library-name>
+   - npm adduser
+        This command will asks you username, password and email you entered when opnening account on npmjs.org.
+   - npm login
+        This command will asks you username, password and email you entered when opnening account on npmjs.org.
+   - npm init
+        This command will ask you name, version, description, keywords, license, author etc.
+   - npm publish
+   - Now import using command : npm i <library-name> in which project you want to use and add import statement in app.module
+
+
+7. To use locally first take build for library and then import the module in app.module
+   as import {AngularFileDragDropModule} from '../../projects/file-drag-drop/src/lib/angular-file-drag-drop.module';
+   and use the component by using the it's selector.
+
+8. To remove/delete npm package
+
+   - npm adduser (if not did before, make user to cd to the project folder)
+   - npm login (if not did before, make user to cd to the project folder)
+   - npm unpublish
+
+
+
+

@@ -1,0 +1,30 @@
+{
+  "name": "angular-file-drag-drop",
+  "version": "0.0.5",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "description": "Simple multiple files drag and drop component in Angular 7, also allows to select multiple files using button given. Gives selected files array as output.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KokilaBawankar/angular-file-drag-drop.git"
+  },
+  "keywords": [
+    "Angular7",
+    "Angular6",
+    "Angular5",
+    "Angular4",
+    "Angular2",
+    "File Drag Drop"
+  ],
+  "author": "Kokila",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KokilaBawankar/angular-file-drag-drop/issues"
+  },
+  "homepage": "https://github.com/KokilaBawankar/angular-file-drag-drop#readme"
+}
