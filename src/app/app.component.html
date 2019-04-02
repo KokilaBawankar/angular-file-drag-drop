@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-md-12">
 
-      <lib-file-drag-drop (select)="onFileDropOrSelect($event)"
+      <lib-file-drag-drop [maxSize]="2"
+                          [maxFiles]="10"
+                          [acceptedFormats]="['image/png', 'jpg', '.jpeg', '.pem', '.gz']"
+                          [removeButton]="true"
+                          (select)="onFileDropOrSelect($event)"
                           (dropAreaHovering)="onDropAreaHover($event)"></lib-file-drag-drop>
       <!--<div style="width: 500px;height: 300px;">
         <h3 style="text-align: center">ngx-file-drop</h3>
