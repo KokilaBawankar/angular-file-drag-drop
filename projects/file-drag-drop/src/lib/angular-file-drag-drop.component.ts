@@ -5,7 +5,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
   template: `
     <div class="file-drop">
       <div class="file-drop-box"
-           appFiledrop
+           libFileDrop
            (droppedFiles)="onFileDropOrSelect($event)"
            (dropAreaHover)="onDropAreaHover($event)"
            [class.drop-section-hover]="dropAreaHover">
