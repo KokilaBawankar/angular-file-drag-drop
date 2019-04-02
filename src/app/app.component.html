@@ -6,6 +6,7 @@
                           [maxFiles]="10"
                           [acceptedFormats]="['image/png', 'jpg', '.jpeg', '.pem', '.gz']"
                           [removeButton]="true"
+                          [showSupportedFormats]="false"
                           (select)="onFileDropOrSelect($event)"
                           (dropAreaHovering)="onDropAreaHover($event)"></lib-file-drag-drop>
       <!--<div style="width: 500px;height: 300px;">

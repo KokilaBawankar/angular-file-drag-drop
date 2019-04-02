@@ -5,7 +5,7 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
   selector: 'lib-file-drag-drop',
   template: `
     <div class="file-drop">
-      <span class="supported-file-format">Supported file types {{acceptedFormats}}</span>
+      <span class="supported-file-format" *ngIf="showSupportedFormats">Supported file types {{acceptedFormats}}</span>
       <div class="file-drop-box"
            libFileDrop
            (droppedFiles)="onFileDropOrSelect($event)"
@@ -17,6 +17,12 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
                [accept]="acceptedFormats"
                (change)="onFileDropOrSelect($event.target.files)" multiple>
       </div>
+      <div>
+        <button type="reset" class="btn btn-success done-button" [disabled]="files.length === 0 || disableSubmit" (click)="onSubmit()">
+          Done
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="files.length === 0" (click)="onReset()">Reset</button>
+      </div>
       <div class="list-group selected-file-list" *ngIf="files.length != 0 ">
         <div *ngFor="let file of files">
           <span>{{file.name}}</span>
@@ -24,8 +30,8 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
             <svg class="remove-file" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-              <circle  cx="256" cy="256" r="256"/>
-              <path  d="M510.28,285.304L367.912,142.936L150.248,368.608l140.928,140.928
+              <circle cx="256" cy="256" r="256"/>
+              <path d="M510.28,285.304L367.912,142.936L150.248,368.608l140.928,140.928
 	          C406.352,493.696,497.056,401.288,510.28,285.304z"/>
               <g>
                 <path style="fill:#FFFFFF;" d="M354.376,371.536c-5.12,0-10.232-1.952-14.144-5.856L146.408,171.848
@@ -74,6 +80,13 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
       width: 130px
     }
 
+    .done-button {
+      margin: 10px;
+    }
+
+    .file-drop-box > button:disabled{
+      cursor: pointer;
+    }
     .supported-file-format {
       color: #808080ad;
       font-size: 11px;
@@ -102,10 +115,12 @@ export class AngularFileDragDropComponent implements OnInit {
   files: any[] = [];
   dropAreaHover = false;
   showMaxFilesError = false;
+  disableSubmit = false;
   @Input() maxSize = 2;
   @Input() maxFiles = null;
   @Input() acceptedFormats: string[];
-  @Input() removeButton = false;
+  @Input() removeButton = true;
+  @Input() showSupportedFormats = true;
 
   @Output() select = new EventEmitter();
   @Output() dropAreaHovering = new EventEmitter();
@@ -126,6 +141,7 @@ export class AngularFileDragDropComponent implements OnInit {
 
   onFileDropOrSelect(files) {
     this.files = [];
+    this.disableSubmit = false;
     if (this.maxFiles != null && files.length <= this.maxFiles || this.maxFiles == null) {
       this.showMaxFilesError = false;
       for (let i = 0; i < files.length; i++) {
@@ -142,16 +158,18 @@ export class AngularFileDragDropComponent implements OnInit {
             const file = files[i];
             file.restrictedBy = 'type';
             this.files.push(file);
+            this.disableSubmit = true;
           }
         } else {
           const file = files[i];
           file.restrictedBy = 'size';
           this.files.push(file);
+          this.disableSubmit = true;
         }
       }
-      this.select.emit(files);
     } else {
       this.showMaxFilesError = true;
+      this.disableSubmit = true;
     }
   }
 
@@ -161,6 +179,22 @@ export class AngularFileDragDropComponent implements OnInit {
 
   removeFile(file) {
     this.files = this.files.filter(f => file !== f);
+    this.disableSubmit = false;
+    for (let i = 0; i < this.files.length ; i++) {
+      if (this.files[i].restrictedBy) {
+        this.disableSubmit = true;
+      }
+    }
+  }
+
+  onSubmit() {
+    this.files = [];
+    this.select.emit(this.files);
+  }
+
+  onReset() {
+    this.files = [];
+    this.disableSubmit = true;
   }
 
 }
