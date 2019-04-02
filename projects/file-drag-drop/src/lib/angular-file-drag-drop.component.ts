@@ -19,7 +19,7 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
       </div>
       <div>
         <button type="reset" class="btn btn-success done-button" [disabled]="files.length === 0 || disableSubmit" (click)="onSubmit()">
-          Done
+          {{submitBtnText}}
         </button>
         <button type="submit" class="btn btn-primary" [disabled]="files.length === 0" (click)="onReset()">Reset</button>
       </div>
@@ -121,6 +121,7 @@ export class AngularFileDragDropComponent implements OnInit {
   @Input() acceptedFormats: string[];
   @Input() removeButton = true;
   @Input() showSupportedFormats = true;
+  @Input() submitBtnText = 'Done';
 
   @Output() select = new EventEmitter();
   @Output() dropAreaHovering = new EventEmitter();
@@ -188,8 +189,8 @@ export class AngularFileDragDropComponent implements OnInit {
   }
 
   onSubmit() {
-    this.files = [];
     this.select.emit(this.files);
+    this.files = [];
   }
 
   onReset() {
