@@ -18,10 +18,11 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
                (change)="onFileDropOrSelect($event.target.files)" multiple>
       </div>
       <div>
-        <button type="reset" class="btn btn-success done-button" [disabled]="files.length === 0 || disableSubmit" (click)="onSubmit()">
+        <button type="reset" class="submit-button button-side-space" [disabled]="files.length === 0 || disableSubmit"
+                (click)="onSubmit()">
           {{submitBtnText}}
         </button>
-        <button type="submit" class="btn btn-primary" [disabled]="files.length === 0" (click)="onReset()">Reset</button>
+        <button type="submit" class="reset-button button-side-space" [disabled]="files.length === 0" (click)="onReset()">Reset</button>
       </div>
       <div class="list-group selected-file-list" *ngIf="files.length != 0 ">
         <div *ngFor="let file of files">
@@ -80,13 +81,52 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
       width: 130px
     }
 
-    .done-button {
-      margin: 10px;
+    .button-side-space {
+      margin: 5px;
     }
 
-    .file-drop-box > button:disabled{
-      cursor: pointer;
+    .submit-button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 8px 24px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 5px;
     }
+
+    .submit-button:not([disabled]):hover {
+      background-color: #26882a;
+    }
+
+    .submit-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .reset-button {
+      background-color: #008CBA; /* Blue */
+      border: none;
+      color: white;
+      padding: 8px 24px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 5px;
+    }
+
+    .reset-button:not([disabled]):hover {
+      background-color: #2d7992;
+    }
+
+    .reset-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .supported-file-format {
       color: #808080ad;
       font-size: 11px;
@@ -181,7 +221,7 @@ export class AngularFileDragDropComponent implements OnInit {
   removeFile(file) {
     this.files = this.files.filter(f => file !== f);
     this.disableSubmit = false;
-    for (let i = 0; i < this.files.length ; i++) {
+    for (let i = 0; i < this.files.length; i++) {
       if (this.files[i].restrictedBy) {
         this.disableSubmit = true;
       }
