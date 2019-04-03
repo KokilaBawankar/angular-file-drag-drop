@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AngularFileDragDropService} from './angular-file-drag-drop.service';
 
 @Component({
-  selector: 'lib-file-drag-drop',
+  selector: 'angular-file-drag-drop',
   template: `
     <div class="file-drop">
       <span class="supported-file-format" *ngIf="showSupportedFormats">Supported file types {{acceptedFormats}}</span>
@@ -160,7 +160,7 @@ export class AngularFileDragDropComponent implements OnInit {
   @Input() maxFiles = null;
   @Input() acceptedFormats: string[];
   @Input() removeButton = true;
-  @Input() showSupportedFormats = true;
+  @Input() showSupportedFormats = false;
   @Input() submitBtnText = 'Done';
 
   @Output() select = new EventEmitter();
