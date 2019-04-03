@@ -223,7 +223,13 @@ export class AngularFileDragDropComponent implements OnInit {
   }
 
   removeFile(file) {
-    this.files = this.files.filter(f => file !== f);
+    const files = [];
+    for (let i = 0; i < this.files.length; i++) {
+      if (this.files[i] !== file) {
+        files.push(this.files[i]);
+      }
+    }
+    this.files = files;
     this.disableSubmit = false;
     for (let i = 0; i < this.files.length; i++) {
       if (this.files[i].restrictedBy) {
