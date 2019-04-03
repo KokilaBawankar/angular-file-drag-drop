@@ -158,7 +158,7 @@ export class AngularFileDragDropComponent implements OnInit {
   disableSubmit = false;
   @Input() maxSize = 2;
   @Input() maxFiles = null;
-  @Input() acceptedFormats: string[];
+  @Input() acceptedFormats = [];
   @Input() removeButton = true;
   @Input() showSupportedFormats = false;
   @Input() submitBtnText = 'Done';
@@ -188,18 +188,22 @@ export class AngularFileDragDropComponent implements OnInit {
       for (let i = 0; i < files.length; i++) {
         let pushedFlag = false;
         if (this.angularFileDragDropService.chechFileSize(files[i].size)) {
-          for (let j = 0; j < this.acceptedFormats.length; j++) {
-            if ((files[i].name.includes(this.acceptedFormats[j]) || files[i].type === this.acceptedFormats[j])) {
-              this.files.push(files[i]);
-              pushedFlag = true;
-              break;
+          if (this.acceptedFormats.length !== 0) {
+            for (let j = 0; j < this.acceptedFormats.length; j++) {
+              if ((files[i].name.includes(this.acceptedFormats[j]) || files[i].type === this.acceptedFormats[j])) {
+                this.files.push(files[i]);
+                pushedFlag = true;
+                break;
+              }
             }
-          }
-          if (!pushedFlag) {
-            const file = files[i];
-            file.restrictedBy = 'type';
-            this.files.push(file);
-            this.disableSubmit = true;
+            if (!pushedFlag) {
+              const file = files[i];
+              file.restrictedBy = 'type';
+              this.files.push(file);
+              this.disableSubmit = true;
+            }
+          } else {
+            this.files = files;
           }
         } else {
           const file = files[i];
