@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-md-12">
 
-      <angular-file-drag-drop
-                          (select)="onFileDropOrSelect($event)"
-                          (dropAreaHovering)="onDropAreaHover($event)"></angular-file-drag-drop>
+      <angular-file-drag-drop [dirAllowed]="true"
+                              (select)="onFileDropOrSelect($event)"
+                              (dropAreaHovering)="onDropAreaHover($event)"></angular-file-drag-drop>
 
     </div>
   </div>

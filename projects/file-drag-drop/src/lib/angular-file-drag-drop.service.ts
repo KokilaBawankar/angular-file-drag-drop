@@ -7,7 +7,7 @@ export class AngularFileDragDropService {
 
   maxSize: number;
 
-  chechFileSize(size: number) {
+  checkFileSize(size: number) {
     if (size <= this.maxSize) {
       return true;
     } else {

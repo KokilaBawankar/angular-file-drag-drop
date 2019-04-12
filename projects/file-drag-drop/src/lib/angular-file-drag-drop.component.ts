@@ -12,6 +12,12 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
            (dropAreaHover)="onDropAreaHover($event)"
            [class.drop-section-hover]="dropAreaHover">
         <h5 class="text-info file-drop-box-text">Drop files here..</h5>
+        <input *ngIf="dirAllowed"
+               type="file"
+               class="btn btn-info dir-input-button"
+               webkitdirectory mozdirectory msdirectory odirectory directory
+               (change)="onFileDropOrSelect($event.target.files)">
+
         <input type="file"
                class="btn btn-info file-input-button"
                [accept]="acceptedFormats"
@@ -74,6 +80,11 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
     .file-drop-box-text {
       font-size: 15px;
       font-weight: 400;
+      margin-right: 5px;
+    }
+
+    .dir-input-button {
+      width: 130px;
       margin-right: 5px;
     }
 
@@ -162,6 +173,7 @@ export class AngularFileDragDropComponent implements OnInit {
   @Input() removeButton = true;
   @Input() showSupportedFormats = false;
   @Input() submitBtnText = 'Done';
+  @Input() dirAllowed = false;
 
   @Output() select = new EventEmitter();
   @Output() dropAreaHovering = new EventEmitter();
@@ -187,7 +199,7 @@ export class AngularFileDragDropComponent implements OnInit {
       this.showMaxFilesError = false;
       for (let i = 0; i < files.length; i++) {
         let pushedFlag = false;
-        if (this.angularFileDragDropService.chechFileSize(files[i].size)) {
+        if (this.angularFileDragDropService.checkFileSize(files[i].size)) {
           if (this.acceptedFormats.length !== 0) {
             for (let j = 0; j < this.acceptedFormats.length; j++) {
               if ((files[i].name.includes(this.acceptedFormats[j]) || files[i].type === this.acceptedFormats[j])) {

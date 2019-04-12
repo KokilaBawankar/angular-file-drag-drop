@@ -7,14 +7,18 @@ export class FileDropDirective {
 
   @Output() droppedFiles = new EventEmitter();
   @Output() dropAreaHover = new EventEmitter();
-
+  files: any[] = [];
   constructor() { }
 
   @HostListener('drop', ['$event'])
   onDrop(event) {
     event.preventDefault();
-    this.droppedFiles.emit(event.dataTransfer.files);
-    this.dropAreaHover.emit(false);
+    this.getFiles(event)
+      .then(() => {
+        console.log('files', this.files);
+        this.droppedFiles.emit(this.files);
+        this.dropAreaHover.emit(false);
+      });
   }
   @HostListener('dragover', ['$event'])
   onDropAreaHover(event) {
@@ -27,4 +31,34 @@ export class FileDropDirective {
     this.dropAreaHover.emit(false);
   }
 
+  getFiles(event) {
+    return new Promise((resolve, reject) => {
+      for (let i = 0 ; i < event.dataTransfer.items.length ; i++) {
+        if (event.dataTransfer.items[i].webkitGetAsEntry().isDirectory) {
+          this.getFileSystemEntry(event.dataTransfer.items[i].webkitGetAsEntry());
+        } else {
+          this.files.push(event.dataTransfer.files[i]);
+        }
+      }
+      return resolve();
+    });
+  }
+
+  getFileSystemEntry(dirEntry) {
+    const dirReader = dirEntry.createReader();
+    dirReader.readEntries(fileEntries => {
+      if (fileEntries.length !== 0) {
+        fileEntries.forEach(entry => {
+          if (entry.isDirectory) {
+            this.getFileSystemEntry(entry);
+          } else {
+            entry.file(file => {
+              console.log('#file#', file);
+              this.files.push(file);
+            });
+          }
+        });
+      }
+    });
+  }
 }
