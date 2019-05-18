@@ -109,7 +109,7 @@ import {AngularFileDragDropService} from './angular-file-drag-drop.service';
       }
       .afdd-file-drop-box {
         width: 100%;
-        height: 100px;
+        height: 150px;
         border: 2px dotted #1c5490;
         border-radius: 30px;
         justify-content: center;
